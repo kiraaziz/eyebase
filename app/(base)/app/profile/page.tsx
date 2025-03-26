@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { setState } from "@/hooks/useState"
 import { useFetch } from "@/hooks/useFecth"
 import { Button } from "@/components/ui/button"
-import { Avatars } from "@/hooks/useImage"
+import { Avatars } from "@/hooks/useAvatars"
 
 
 export default function UserAvatar() {

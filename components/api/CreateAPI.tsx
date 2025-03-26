@@ -129,12 +129,12 @@ export default function CreateAPI({ projectId, target, collections, children, is
                             projectId: projectId,
                             name: target ? target.name : "",
                             key: target ? target.key : "",
-                            collections: target ? target.permissions.map((v)=>{
+                            collections: target ? target.permissions.map((v: any) => {
                                 return {
                                     colId: v.collectionId,
                                     ...v
                                 }
-                            }) : [] 
+                            }) : []
                         })
                         setOpen(e)
                     }
@@ -149,7 +149,7 @@ export default function CreateAPI({ projectId, target, collections, children, is
                 <DialogContent className="overflow-auto max-h-[90svh]">
                     <DialogHeader>
                         <DialogTitle className="flex ">
-                            Create your API key 
+                            Create your API key
                         </DialogTitle>
                         <DialogDescription className=" py-4">
                             <Input placeholder="Key name..." className="mb-3" value={key.name} onChange={(e) => setState(setKey, "name", e.target.value)} />
@@ -193,7 +193,7 @@ export default function CreateAPI({ projectId, target, collections, children, is
                                         {collections[key.collections.findIndex((v: any) => v.colId === col.colId)].name}
                                     </h1>
                                     <div className="grid grid-cols-3 gap-2">
-                                        {["can-List", "can-Read", "can-Create", "can-Update", "can-Delete"].map((effect) => ( 
+                                        {["can-List", "can-Read", "can-Create", "can-Update", "can-Delete"].map((effect) => (
                                             <div onClick={() => setState(setKey, "collections", key.collections.map((v: any) => {
                                                 if (v.colId !== col.colId) return v
                                                 return {
