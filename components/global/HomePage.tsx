@@ -6,6 +6,7 @@ import { BentoCard, BentoGrid } from "@/components/heros/bento-grid";
 import Structure from '@/components/heros/Structure'
 import Faq from '@/components/heros/faq'
 import { RetroGrid } from '@/components/heros/retro-grid'
+import Footer from '@/components/heros/Footer'
 
 export default async function HomePage() {
 
@@ -107,7 +108,7 @@ export default async function HomePage() {
                 <h1 className='text-2xl lg:text-7xl font-[700] text-center'>FAQs</h1>
                 <Faq />
             </div>
-
+            <Footer />
         </>
     )
 }

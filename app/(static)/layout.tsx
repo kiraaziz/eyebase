@@ -1,9 +1,7 @@
 import HomeLayout from '@/components/global/HomeLayout'
 import Loader from '@/components/global/Loader'
 import { FollowEye } from '@/components/global/Logo'
-import Footer from '@/components/heros/Footer'
 import { Suspense } from 'react'
-
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -46,7 +44,6 @@ async function LayoutLoader({ children }: { children: React.ReactNode }) {
             <div className='min-h-[100svh] w-full '>
                 {children}
             </div>
-            <Footer />
         </HomeLayout>
     )
 }
