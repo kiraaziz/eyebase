@@ -62,7 +62,7 @@ export default function MainLayout({ children, projects, params, mailLink }: { m
     }, [])
 
     return (
-        <div className="h-full w-full overflow-hidden relative ">
+        <div className="h-full w-full overflow-x-hidden relative ">
             <div className='w-full bg-background'>
                 <div ref={divRef} className="w-full bg-primary/5 pt-8 flex items-center justify-between px-5 lg:px-14 pb-5">
                     <Link href={"/app"} className="flelx lg:hidden">

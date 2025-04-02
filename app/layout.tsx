@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Node) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/eyebase-bg.png"></link>
       </head>
-      <body className={cn(nunito.className, "text-foreground h-[100svh] w-screen bg-background p-0 m-0 flex flex-col overflow-hidden !pb-0")
+      <body className={cn(nunito.className, "text-foreground h-[100svh] w-screen overflow-hidden bg-background p-0 m-0 flex flex-col !pb-0")
       }>
         <ThemeProvider
           attribute="class"
