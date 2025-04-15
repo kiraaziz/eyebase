@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/contexts/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -10,10 +9,7 @@ const nunito = Nunito({
   subsets: ['latin'],
   weight: ["200", "300", "500", "400", "600", "700", "800", "900"]
 })
-
-export const metadata = {
-  title: 'Eyebase | The Eye keeps your data simple clean and secure',
-}
+ 
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +23,7 @@ export default function RootLayout({
           type="text/css"
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
+        <title>Eyebase | The Eye keeps your data simple clean and secure</title>
       </head>
       <body
         className={`${nunito.className}  font-regular antialiased tracking-wide`}
