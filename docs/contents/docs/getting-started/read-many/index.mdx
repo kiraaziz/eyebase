@@ -1,0 +1,122 @@
+# Eyebase API: Listing Documents
+
+## Overview
+Retrieve multiple documents from a collection with optional filtering, pagination, and field selection.
+
+## Authentication
+All requests require an API key with list permission passed in the `Authorization` header.
+
+## Listing Documents
+To get multiple documents from a collection:
+
+```javascript
+// JavaScript
+const query = {
+  pagination: {
+    page: 1,
+    perPage: 5
+  },
+  select: ["name", "email"],
+  where: [
+    {
+      field: "age",
+      operator: "gte",
+      value: 30
+    }
+  ]
+};
+
+fetch(`https://eyebase.vercel.app/go/v0.1?collectionName=users&query=${encodeURIComponent(JSON.stringify(query))}`, {
+  method: 'GET',
+  headers: {
+    'Authorization': 'your-api-key'
+  }
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+```python
+# Python
+import requests
+import json
+
+query = {
+  "pagination": {"page": 1, "perPage": 5},
+  "select": ["name", "email"],
+  "where": [{"field": "age", "operator": "gte", "value": 30}]
+}
+
+url = f'https://eyebase.vercel.app/go/v0.1?collectionName=users&query={json.dumps(query)}'
+
+response = requests.get(
+  url,
+  headers={
+    'Authorization': 'your-api-key'
+  }
+)
+result = response.json()
+print(result)
+```
+
+## Query Parameters
+
+The `query` parameter accepts a JSON object with these options:
+
+- **pagination**: Control result page size
+  - `page`: Page number (default: 1)
+  - `perPage`: Results per page (default: 5)
+
+- **select**: Array of field names to include in results
+  - Empty array returns all fields
+
+- **where**: Array of conditions to filter documents
+  - `field`: Document property to filter on
+  - `operator`: Comparison method
+  - `value`: Value to compare against
+
+## Available Operators
+- `equals`: Exact match
+- `not`: Not equal
+- `lt`: Less than
+- `lte`: Less than or equal
+- `gt`: Greater than
+- `gte`: Greater than or equal
+- `contains`: String contains
+- `in`: Value in array
+- `arrayContains`: Array contains value
+
+## Response Format
+```json
+{
+  "status": {
+    "message": "List documents successfully",
+    "success": true,
+    "value": 200
+  },
+  "data": [
+    {
+      "eyeId_": "abc123",
+      "eyeCreatedAt_": "2025-04-15T12:00:00Z",
+      "eyeUpdatedAt_": "2025-04-15T14:30:00Z",
+      "name": "John Smith",
+      "email": "john@example.com"
+    },
+    {
+      "eyeId_": "def456",
+      "eyeCreatedAt_": "2025-04-14T10:15:00Z",
+      "eyeUpdatedAt_": "2025-04-14T10:15:00Z",
+      "name": "Jane Doe",
+      "email": "jane@example.com"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "perPage": 5,
+    "current": 1,
+    "totalPages": 3
+  }
+}
+```
+
+Use the query parameters to filter and narrow down your document lists for more efficient data retrieval.

@@ -47,6 +47,7 @@
     "react-dom": "^18",
     "react-json-view": "^1.21.3",
     "react-spinners-kit": "^1.9.1",
+    "react-webcam": "^7.2.0",
     "recharts": "^2.13.2",
     "resend": "^4.0.1-alpha.0",
     "sharp": "^0.32.6",

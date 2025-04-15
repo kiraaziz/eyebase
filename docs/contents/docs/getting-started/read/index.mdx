@@ -1,0 +1,90 @@
+# Eyebase API: Reading Documents
+
+## Overview
+Retrieve a single document from your collection by its unique ID.
+
+## Authentication
+All requests require an API key with read permission passed in the `Authorization` header.
+
+## Reading a Document
+To get a specific document from a collection:
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1/abc123?collectionName=users', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'your-api-key'
+  }
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+```python
+# Python
+import requests
+
+response = requests.get(
+  'https://eyebase.vercel.app/go/v0.1/abc123?collectionName=users',
+  headers={
+    'Authorization': 'your-api-key'
+  }
+)
+result = response.json()
+print(result)
+```
+
+Replace `abc123` with your actual document ID.
+
+## Response Format
+```json
+{
+  "status": {
+    "message": "Document fetched successfully",
+    "success": true,
+    "value": 200
+  },
+  "data": {
+    "eyeId_": "abc123",
+    "eyeCreatedAt_": "2025-04-15T12:00:00Z",
+    "eyeUpdatedAt_": "2025-04-15T12:00:00Z",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30
+  },
+  "meta": {
+    "collectionName": "users"
+  }
+}
+```
+
+## Error Responses
+
+### Document Not Found
+```json
+{
+  "status": {
+    "message": "Document not found",
+    "success": false,
+    "value": 404
+  },
+  "data": null,
+  "meta": null
+}
+```
+
+### Permission Error
+```json
+{
+  "status": {
+    "message": "API key invalid or no permission to read from the collection",
+    "success": false,
+    "value": 403
+  },
+  "data": null,
+  "meta": null
+}
+```
+
+Now you can retrieve documents from your Eyebase collections using their unique IDs!

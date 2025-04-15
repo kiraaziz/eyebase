@@ -15,19 +15,19 @@ export default async function HomeLayout({ children }: any) {
                     <Link href={`${process.env.NEXT_PUBLIC_APP_URL}/home`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         Home
                     </Link>
-                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/about`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
+                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/docs`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         About
                     </Link>
                     <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/docs`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         Docs
                     </Link>
-                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/blog`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
+                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/docs`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         Blog
                     </Link>
-                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/contact`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
+                    <Link href={`${process.env.NEXT_PUBLIC_CONTACT_URL}`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         Contact
                     </Link>
-                    <Link href={`${process.env.NEXT_PUBLIC_DOCS_URL}/help`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
+                    <Link href={`${process.env.NEXT_PUBLIC_CONTACT_URL}`} className='text-sm font-light text-foreground/60 hidden lg:flex'>
                         Help
                     </Link>
                     <div className='flex-1' />

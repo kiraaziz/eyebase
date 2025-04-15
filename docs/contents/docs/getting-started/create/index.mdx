@@ -1,0 +1,79 @@
+# Eyebase API: Creating Documents
+
+## Overview
+Eyebase is a document database API that lets you store and manage JSON documents in collections with simple CRUD operations.
+
+## Authentication
+All requests require an API key passed in the `Authorization` header.
+
+## Creating Documents
+To add a new document to a collection:
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1?collectionName=users', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'your-api-key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+    email: 'john@example.com',
+    age: 30
+  })
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+```python
+# Python
+import requests
+
+requests.post(
+  'https://eyebase.vercel.app/go/v0.1?collectionName=users',
+  headers={
+    'Authorization': 'your-api-key',
+    'Content-Type': 'application/json'
+  },
+  json={
+    'name': 'John Doe',
+    'email': 'john@example.com',
+    'age': 30
+  }
+)
+```
+
+## Response Format
+```json
+{
+  "status": {
+    "message": "Document created successfully",
+    "success": true,
+    "value": 201
+  },
+  "data": {
+    "eyeId_": "document-id",
+    "eyeCreatedAt_": "2025-04-15T12:00:00Z",
+    "eyeUpdatedAt_": "2025-04-15T12:00:00Z",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30
+  },
+  "meta": null
+}
+```
+
+Every document gets three system fields automatically added:
+- `eyeId_`: Unique document identifier
+- `eyeCreatedAt_`: Creation timestamp
+- `eyeUpdatedAt_`: Last update timestamp
+
+## Key Features
+- **Collection-based**: Documents are organized in collections
+- **Permission system**: API keys have specific permissions (create, read, update, delete, list)
+- **Simple JSON storage**: Store any valid JSON document
+- **Query support**: Filter documents using various operators
+
+Now you can start creating documents in your Eyebase collections!

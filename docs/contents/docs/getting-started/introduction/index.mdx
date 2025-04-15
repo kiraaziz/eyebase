@@ -1,0 +1,252 @@
+# Eyebase API Introduction Guide
+
+## What is Eyebase?
+
+Eyebase is a simple document database API that allows you to store, retrieve, and manage JSON documents in collections. It provides a RESTful interface for CRUD operations (Create, Read, Update, Delete) with built-in permission controls.
+
+## Key Features
+
+- **Document-based storage**: Store any valid JSON documents
+- **Collections**: Organize documents in named collections
+- **Permission system**: Fine-grained access control for API keys
+- **Simple REST API**: Intuitive endpoints for all operations
+- **Query capabilities**: Filter documents based on field values
+
+## Getting Started
+
+### Prerequisites
+
+- An API key with appropriate permissions
+- A collection name to store your documents
+
+### Base URL
+
+All API requests are made to:
+```
+https://eyebase.vercel.app/go/v0.1
+```
+
+### Authentication
+
+All requests require an API key passed in the `Authorization` header.
+
+## Core Operations
+
+### Creating Documents
+
+**POST** `/go/v0.1?collectionName={collectionName}`
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1?collectionName=users', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'your-api-key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+    email: 'john@example.com',
+    age: 30
+  })
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+### Reading a Document
+
+**GET** `/go/v0.1/{documentId}?collectionName={collectionName}`
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1/abc123?collectionName=users', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'your-api-key'
+  }
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+### Updating a Document
+
+**PUT** `/go/v0.1/{documentId}?collectionName={collectionName}`
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1/abc123?collectionName=users', {
+  method: 'PUT',
+  headers: {
+    'Authorization': 'your-api-key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'John Smith',
+    email: 'john@example.com',
+    age: 31
+  })
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+### Deleting a Document
+
+**DELETE** `/go/v0.1/{documentId}?collectionName={collectionName}`
+
+```javascript
+// JavaScript
+fetch('https://eyebase.vercel.app/go/v0.1/abc123?collectionName=users', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': 'your-api-key'
+  }
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+### Listing Documents
+
+**GET** `/go/v0.1?collectionName={collectionName}&query={queryJson}`
+
+```javascript
+// JavaScript
+const query = {
+  pagination: {page: 1, perPage: 5},
+  select: ["name", "email"],
+  where: [{field: "age", operator: "gte", value: 30}]
+};
+
+fetch(`https://eyebase.vercel.app/go/v0.1?collectionName=users&query=${JSON.stringify(query)}`, {
+  method: 'GET',
+  headers: {
+    'Authorization': 'your-api-key'
+  }
+})
+.then(response => response.json())
+.then(result => console.log(result));
+```
+
+## Query Parameters
+
+When listing documents, the `query` parameter accepts a JSON object with these options:
+
+- **pagination**: Control result page size
+  - `page`: Page number (default: 1)
+  - `perPage`: Results per page (default: 5)
+
+- **select**: Array of field names to include in results
+  - Empty array returns all fields
+
+- **where**: Array of conditions to filter documents
+  - `field`: Document property to filter on
+  - `operator`: Comparison method (equals, not, lt, lte, gt, gte, contains, in, arrayContains)
+  - `value`: Value to compare against
+
+## Response Format
+
+All API responses follow this structure:
+
+```json
+{
+  "status": {
+    "message": "Operation description",
+    "success": true/false,
+    "value": 200/201/400/403/404
+  },
+  "data": { ... },
+  "meta": { ... }
+}
+```
+
+## System Fields
+
+Every document automatically includes these system fields:
+
+- `eyeId_`: Unique document identifier
+- `eyeCreatedAt_`: Creation timestamp
+- `eyeUpdatedAt_`: Last update timestamp
+
+## Error Handling
+
+Common error responses include:
+
+- **400**: Invalid collection name or request
+- **403**: API key invalid or insufficient permissions
+- **404**: Document not found
+
+## Example Workflow
+
+1. Create a document in the "products" collection
+2. Retrieve the document using its ID
+3. Update the document with new information
+4. List all documents in the collection with a price greater than 50
+5. Delete the document when no longer needed
+
+## Python Example
+
+```python
+import requests
+import json
+
+# Base URL and headers
+base_url = 'https://eyebase.vercel.app/go/v0.1'
+headers = {
+    'Authorization': 'your-api-key',
+    'Content-Type': 'application/json'
+}
+
+# Create a document
+create_response = requests.post(
+    f'{base_url}?collectionName=products',
+    headers=headers,
+    json={
+        'name': 'Laptop',
+        'price': 999.99,
+        'inStock': True
+    }
+)
+result = create_response.json()
+document_id = result['data']['eyeId_']
+
+# Retrieve the document
+get_response = requests.get(
+    f'{base_url}/{document_id}?collectionName=products',
+    headers=headers
+)
+
+# Update the document
+update_response = requests.put(
+    f'{base_url}/{document_id}?collectionName=products',
+    headers=headers,
+    json={
+        'name': 'Laptop',
+        'price': 899.99,
+        'inStock': True,
+        'onSale': True
+    }
+)
+
+# List documents with filters
+query = {
+    'pagination': {'page': 1, 'perPage': 10},
+    'where': [{'field': 'price', 'operator': 'gt', 'value': 500}]
+}
+list_response = requests.get(
+    f'{base_url}?collectionName=products&query={json.dumps(query)}',
+    headers=headers
+)
+
+# Delete the document
+delete_response = requests.delete(
+    f'{base_url}/{document_id}?collectionName=products',
+    headers=headers
+)
+```
+
+## Summary
+
+Eyebase provides a simple yet powerful API for document storage and retrieval. With its intuitive REST interface and flexible query capabilities, you can quickly build applications that require document storage without the overhead of managing a database server.
