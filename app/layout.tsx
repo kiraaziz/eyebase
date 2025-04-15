@@ -4,6 +4,8 @@ import { Node } from "@/types/client"
 import { Toaster } from "@/components/ui/sonner"
 import { Nunito } from 'next/font/google'
 import SessionProviderClient from "@/components/providers/session"
+import { Analytics } from "@vercel/analytics/react"
+
 import "@/lib/globals.css"
 
 const nunito = Nunito({
@@ -36,6 +38,7 @@ export default function RootLayout({ children }: Node) {
             {children}
           </SessionProviderClient>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html >
   )

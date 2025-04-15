@@ -49,7 +49,7 @@ export function Navbar() {
 
         <div className="flex items-center sm:justify-normal justify-between sm:gap-3 ml-1 sm:w-fit w-[90%]">
           <div className="flex items-center justify-between sm:gap-2">
-            <div className="flex ml-4 sm:ml-0">
+            <div className="flex ml-4 sm:ml-0 gap-2">
               <Link
                 href="https://github.com/kiraaziz/eyebase"
                 className={buttonVariants({
@@ -59,7 +59,14 @@ export function Navbar() {
               >
                 <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
               </Link> 
-              <ModeToggle />
+              <Link
+                href="https://eyebase.vercel.app"
+                className={buttonVariants({
+                  variant: "default",
+                })}
+              >
+                Dashboard
+              </Link> 
             </div>
           </div>
         </div>

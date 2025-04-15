@@ -6,7 +6,7 @@ const CloudMotionMask = () => {
   
   // Track mouse position
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e:any) => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY
