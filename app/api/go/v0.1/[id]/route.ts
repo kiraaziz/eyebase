@@ -203,7 +203,7 @@ export const DELETE = async (req: Request, { params }: { params: { id: string } 
 }
  
 export const PUT = async (req: Request, { params }: { params: { id: string } }) => {
-    const { data } = await req.json()
+    const data = await req.json()
 
     const headersList = await headers()
     const key = headersList.get('Authorization')

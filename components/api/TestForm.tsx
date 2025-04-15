@@ -175,7 +175,7 @@ const READ = ({ form, inputId, setResult, result, method, selector, collectionNa
             }
 
             if (["UPDATE SINGLE", "CREATE"].includes(form.methode)) {
-                options.body = JSON.stringify({ data: jsonText });
+                options.body = JSON.stringify(jsonText);
             }
 
             const req = await fetch(`/api/go/v0.1

@@ -228,7 +228,7 @@ export const GET = async (request: Request) => {
 }
 
 export const POST = async (req: Request) => {
-    const { data } = await req.json()
+    const data = await req.json()
 
     const headersList = await headers()
     const key = headersList.get('Authorization')
