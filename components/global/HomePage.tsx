@@ -6,7 +6,6 @@ import { BentoCard, BentoGrid } from "@/components/heros/bento-grid";
 import Structure from '@/components/heros/Structure'
 import Faq from '@/components/heros/faq'
 import { RetroGrid } from '@/components/heros/retro-grid'
-import Footer from '@/components/heros/Footer'
 
 export default async function HomePage() {
 
@@ -44,46 +43,32 @@ export default async function HomePage() {
 
     return (
         <>
-            <div className="relative h-[60rem] w-full overflow-hidden font-sans">
-                <div className="absolute inset-0 z-0">
-                    <video
-                        className="absolute min-w-full min-h-full w-auto h-auto object-cover top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-125"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        style={{
-                            filter: 'sepia(100%) hue-rotate(0deg) saturate(100%)'
-                        }}>
-                        <source src="https://huly.io/videos/pages/home/hero/hero.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div className=' h-[29.7rem] left-[8rem] absolute z-10 bottom-0 w-[57.7rem] rounded-t-2xl  bg-white'>
-                    {/* <HeroVideoDialog
-                        className="block h-full "
-                        animationStyle="from-center"
-                        videoSrc={process.env.DEMO_VIDEO || ""}
-                        thumbnailSrc="/background.png"
-                        thumbnailAlt="Hero Video" /> */}
-                </div>
-                <div className="relative z-10  flex items-center justify-start ml-[6rem] mt-10">
-                    <div className="max-w-4xl flex flex-col items-start">
-                        <div className='w-1/2 hidden lg:flex items-center justify-center mb-3 '>
-                            <Eyebase size='xl' haveText={false} isMove={true} isBlur={true} />
-                        </div>
-                        <div className='w-1/2 lg:hidden flex items-center justify-center mb-3'>
-                            <Eyebase size='lg' haveText={false} isMove={!true} isBlur={true} />
-                        </div>
-                        <h1 className='text-2xl lg:text-7xl font-[700]'>The Eye keeps your data simple clean and secure</h1>
-                        <h1 className='text-base mt-3 max-w-2xl  font-[200] text-foreground/70 '>Keep your data , collections and documents in one single place . controll it with your own keys after have your key let's make wonder togther</h1>
-                        <Link href={"/app"} className="flex items-center justify-center gap-2 mx-auto mt-5 w-max  px-3 py-0.5 rounded-full bg-background/50 backdrop-blur-xl hover:gap-3 ease-in-out duration-200">
-                            <p className="text-base text-foreground/70 ">
-                                ✨ Use Eyebase
-                            </p>
-                            <ChevronRight size={15} />
-                        </Link>
+            <div className="mt-16 flex items-center justify-center w-full p-5 lg:min-h-[70svh]">
+                <div className="max-w-4xl">
+                    <div className='w-full hidden lg:flex items-center justify-center mb-3 '>
+                        <Eyebase size='xl' haveText={false} isMove={true} isBlur={true} />
                     </div>
+                    <div className='w-full lg:hidden flex items-center justify-center mb-3'>
+                        <Eyebase size='lg' haveText={false} isMove={!true} isBlur={true} />
+                    </div>
+                    <h1 className='text-2xl lg:text-7xl font-[700] text-center'>The Eye keeps your data simple clean and secure</h1>
+                    <h1 className='text-base mt-3 max-w-2xl mx-auto font-[200] text-center text-foreground/70'>Keep your data , collections and documents in one single place . controll it with your own keys after have your key let's make wonder togther</h1>
+                    <Link href={"/app"} className="bg-muted flex items-center justify-center gap-2 mx-auto mt-5 w-max  px-3 py-0.5 rounded-full border hover:gap-3 ease-in-out duration-200">
+                        <p className="text-base text-foreground/70 ">
+                            ✨ Use Eye base
+                        </p>
+                        <ChevronRight size={15} />
+                    </Link>
                 </div>
+
+            </div>
+            <div className='relative w-full max-w-7xl mx-auto shadow-md shadow-background/60'>
+                <HeroVideoDialog
+                    className="block "
+                    animationStyle="from-center"
+                    videoSrc={process.env.DEMO_VIDEO || ""}
+                    thumbnailSrc="/background.png"
+                    thumbnailAlt="Hero Video"/>
             </div>
             <div className='relative w-full max-w-7xl mx-auto px-5 mt-36 mb-10'>
                 <div className='mx-auto max-w-xl -rotate-[25deg] -translate-x-52 -translate-y-20 hidden lg:block'>
@@ -122,7 +107,7 @@ export default async function HomePage() {
                 <h1 className='text-2xl lg:text-7xl font-[700] text-center'>FAQs</h1>
                 <Faq />
             </div>
-            <Footer />
+
         </>
     )
 }
