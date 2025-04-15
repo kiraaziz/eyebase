@@ -1,5 +1,3 @@
-const path = require("path");
-
 const config = {
   reactStrictMode: true,
   images: {
@@ -14,14 +12,15 @@ const config = {
       },
     ],
   },
-  webpack(config, { isServer }) {
-    // Exclude ./docs folder from the build process
+  // Add this section to ignore .docs files/directories
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  webpack: (config, { isServer }) => {
+    // Ignore .docs files/directories
     config.module.rules.push({
-      test: /docs/,
-      loader: 'ignore-loader', // Ignore loading files from ./docs folder
-      include: path.resolve(__dirname, 'docs'),
+      test: /\.docs$/,
+      use: 'ignore-loader',
     });
-
+    
     return config;
   },
 };
